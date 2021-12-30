@@ -5,7 +5,10 @@ import Accessors.Library exposing (onEach, try)
 import Expect
 import FuncAccessors exposing (..)
 import Test exposing (Test, describe, test)
+import Dict exposing (Dict)
 
+dictEntry : comparable -> Relation (Maybe v) sub wrap -> Relation (Dict comparable v) sub wrap
+dictEntry key = makeOneToOne (Dict.get key) (Dict.update key)
 
 fooListFooNum : Relation Int reachable wrap -> Relation FooList reachable (List wrap)
 fooListFooNum =
